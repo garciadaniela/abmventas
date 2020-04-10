@@ -289,7 +289,12 @@ if ($_POST) {
                 <select required class="form-control" name="lstcliente" id="lstcliente">
                   <option value="" disabled selected>Seleccionar</option>
                   <?php foreach ($aClientes as $cliente) : ?>
-                    <option value="<?php echo $cliente->idcliente; ?>"> <?php echo $cliente->nombre; ?></option>
+                    <?php if($cliente->idcliente == $venta->fk_idcliente): ?>
+                  <option selected value="<?php echo $cliente->idcliente; ?>"> <?php echo $cliente->nombre;?></option>
+                  
+                    <?php else: ?>
+                  <option value="<?php echo $cliente->idcliente; ?>"> <?php echo $cliente->nombre;?></option>
+                    <?php endif; ?>
                   <?php endforeach; ?>
                 </select>
               </div>
@@ -298,8 +303,12 @@ if ($_POST) {
                 <select required class="form-control" name="lstproducto" id="lstproducto">
                   <option value="" disabled selected>Seleccionar</option>
                   <?php foreach ($aProductos as $producto) : ?>
-                    <?php if($producto->idproducto == $venta->fk_idproducto) ?>
-                    <option value="<?php echo $producto->idproducto; ?>"> <?php echo $producto->nombre; ?></option>
+                    <?php if($producto->idproducto == $venta->fk_idproducto): ?>
+                  <option selected value="<?php echo $producto->idproducto; ?>"> <?php echo $producto->nombre;?></option>
+                  
+                    <?php else: ?>
+                  <option value="<?php echo $producto->idproducto; ?>"> <?php echo $producto->nombre;?></option>
+                    <?php endif; ?>
                   <?php endforeach; ?>
                 </select>
 
