@@ -42,7 +42,15 @@ class Venta
     public function insertar()
     {
         $mysqli = new mysqli(Config::BBDD_HOST, Config::BBDD_USUARIO, Config::BBDD_CLAVE, Config::BBDD_NOMBRE);
-        $sql = "INSERT INTO ventas (fk_idcliente, fk_idproducto, fecha, cantidad, preciounitario, total) VALUES (" . $this->fk_idcliente . ", " . $this->fk_idproducto . ", '" . $this->fecha . "', " . $this->cantidad . ", " . $this->preciounitario . ", " . $this->total . ");";
+        $sql = "INSERT INTO ventas (fk_idcliente, fk_idproducto, fecha, cantidad, preciounitario, total) 
+                VALUES 
+               (" . $this->fk_idcliente . ",
+                " . $this->fk_idproducto . ", 
+                " . $this->fecha . ", 
+                " . $this->cantidad . ",
+                " . $this->preciounitario . ",
+                " . $this->total . "
+        );";
         if (!$mysqli->query($sql)) {
             printf("Error en query: %s\n", $mysqli->error . " " . $sql);
         }
