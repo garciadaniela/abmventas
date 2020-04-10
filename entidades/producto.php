@@ -5,6 +5,7 @@ class Producto{
     private $cantidad;
     private $precio;
     private $descripcion;
+    private $fk_idtipoproducto;
     
 
     public function __construct(){
@@ -25,12 +26,13 @@ class Producto{
         $this->cantidad = isset($request["txtCantidad"])? $request["txtCantidad"]: "";
         $this->precio = isset($request["txtPrecio"])? $request["txtPrecio"] : "";
         $this->descripcion = isset($request["txtDescripcion"])? $request["txtDescripcion"] : "";
+        $this->fk_idtipoproducto = isset($request["lstTipoProducto"])? $request["lstTipoProducto"] : "";
        
     }
 
     public function insertar(){
         $mysqli = new mysqli(Config::BBDD_HOST, Config::BBDD_USUARIO, Config::BBDD_CLAVE, Config::BBDD_NOMBRE);
-        $sql = "INSERT INTO productos (nombre, cantidad, precio, descripcion) VALUES ('" . $this->nombre ."', " . $this->cantidad .", " . $this->precio . ", '" . $this->descripcion ."');";
+        $sql = "INSERT INTO productos (nombre, cantidad, precio, descripcion, fk_idtipoproducto) VALUES ('" . $this->nombre ."', " . $this->cantidad .", " . $this->precio . ", '" . $this->descripcion ."', ". $this->fk_idtipoproducto .");";
         $mysqli->query($sql);
         $this->idproducto = $mysqli->insert_id;
         $mysqli->close();
@@ -45,7 +47,7 @@ class Producto{
 
     public function obtenerPorId(){
         $mysqli = new mysqli(Config::BBDD_HOST, Config::BBDD_USUARIO, Config::BBDD_CLAVE, Config::BBDD_NOMBRE);
-        $sql = "SELECT idproducto, nombre, cantidad, precio, descripcion FROM productos WHERE idproducto = " . $this->idproducto;
+        $sql = "SELECT idproducto, nombre, cantidad, precio, descripcion, fk_idtipoproducto FROM productos WHERE idproducto = " . $this->idproducto;
         $resultado = $mysqli->query($sql);
 
         //Convierte el resultado
@@ -55,6 +57,7 @@ class Producto{
         $this->cantidad = $fila["cantidad"];
         $this->precio = $fila["precio"];
         $this->descripcion = $fila["descripcion"];
+        $this->fk_idtipoproducto = $fila["fk_idtipoproducto"];
 
         
         }
@@ -70,6 +73,7 @@ class Producto{
                 cantidad = '.$this->cantidad .',
                 precio = '.$this->precio.',
                 descripcion = '".$this->descripcion."',
+                fk_idtipoproducto = '.$this->fk_idtipoproducto.',
                 WHERE idproducto = " . $this->idproducto;
         $mysqli->query($sql);
         $mysqli->close();
@@ -77,7 +81,7 @@ class Producto{
 
     public function obtenerTodos(){
         $mysqli = new mysqli(Config::BBDD_HOST, Config::BBDD_USUARIO, Config::BBDD_CLAVE, Config::BBDD_NOMBRE);
-        $sql = "SELECT idproducto, nombre, cantidad, precio, descripcion FROM productos";
+        $sql = "SELECT idproducto, nombre, cantidad, precio, descripcion, fk_idtipoproducto FROM productos";
         $resultado = $mysqli->query($sql);
 
         $aResultado = array();
@@ -90,6 +94,7 @@ class Producto{
                 $productoAux->cantidad = $fila["cantidad"];
                 $productoAux->precio = $fila["precio"];
                 $productoAux->descripcion = $fila["descripcion"];
+                $productoAux->fk_idtipoproducto = $fila["fk_idtipoproducto"];
                 $aResultado[] = $productoAux;
             }
         }

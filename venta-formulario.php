@@ -1,23 +1,34 @@
 <?php
 include_once "config.php";
+include_once "entidades/venta.php";
+include_once "entidades/cliente.php";
 include_once "entidades/producto.php";
 
+$venta = new Venta();
+$venta->cargarFormulario($_REQUEST);
+
+$cliente = new Cliente();
+$aClientes = $cliente->obtenerTodos();
+
 $producto = new Producto();
-$producto->cargarFormulario($_REQUEST);
+$aProductos = $producto->obtenerTodos();
+
+
+
 
 if ($_POST) {
   if (isset($_POST["btnGuardar"])) {
     if (isset($_GET["id"]) && $_GET["id"] > 0) {
-      $producto->actualizar();
+      $venta->actualizar();
     } else {
-      $producto->insertar();
+      $venta->insertar();
     }
   } else if (isset($_POST["btnBorrar"])) {
-    $producto->eliminar();
+    $venta->eliminar();
   }
 }
 if (isset($_GET["id"]) && $_GET["id"] > 0) {
-  $producto->obtenerPorId();
+  $venta->obtenerPorId();
 }
 
 
@@ -277,34 +288,48 @@ if ($_POST) {
                 <label for="txtNombre">Cliente:</label>
                 <select required class="form-control" name="lstcliente" id="lstcliente">
                   <option value="" disabled selected>Seleccionar</option>
-                  </select>
+                  <?php foreach ($aClientes as $cliente) : ?>
+                    <option value="<?php echo $cliente->idcliente; ?>"> <?php echo $cliente->nombre; ?></option>
+                  <?php endforeach; ?>
+                </select>
               </div>
               <div class="col-6 form-group">
                 <label for="txtNombre">Producto:</label>
                 <select required class="form-control" name="lstproducto" id="lstproducto">
                   <option value="" disabled selected>Seleccionar</option>
-                  </select>
+                  <?php foreach ($aProductos as $producto) : ?>
+                    <?php if($producto->idproducto == $venta->fk_idproducto) ?>
+                    <option value="<?php echo $producto->idproducto; ?>"> <?php echo $producto->nombre; ?></option>
+                  <?php endforeach; ?>
+                </select>
+
+                </select>
               </div>
             </div>
             <div class="row">
               <div class="col-4 form-group">
                 <label for="txtFecha">Fecha:</label>
-                <input type="date" required class="form-control" name="txtFecha" id="txtFecha" value="<?php echo $producto->cantidad ?>">
+                <input type="date" required class="form-control" name="txtFecha" id="txtFecha" value="<?php echo date_format(date_create($venta->fecha), "d/m/Y H:m");  ?>">
               </div>
-
               <div class="col-4 form-group">
+                <label for="txtHora">Hora:</label>
+                <input type="time" required class="form-control" name="txtHora" id="txtHora" value="<?php echo date_format(date_create($venta->fecha), "d/m/Y H:i");  ?>">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 form-group">
                 <label for="txtCantidad">Cantidad:</label>
-                <input type="number" required class="form-control" name="txtCantidad" id="txtCantidad" value="<?php echo $producto->precio ?>">
+                <input type="number" required class="form-control" name="txtCantidad" id="txtCantidad" value="<?php echo $venta->cantidad ?>">
               </div>
-              <div class="col-4 form-group">
+              <div class="col-6 form-group">
                 <label for="txtPrecioUnitario">Precio Unitario:</label>
-                <input type="number" required class="form-control" name="txtPrecioUnitario" id="txtPrecioUnitario" value="<?php echo $producto->precio ?>">
+                <input type="number" required class="form-control" name="txtPrecioUnitario" id="txtPrecioUnitario" value="<?php echo $venta->preciounitario ?>">
               </div>
             </div>
             <div class="row">
               <div class="col-4 form-group">
                 <label for="txtTotal">Total:</label>
-                <input type="number" class="form-control" name="txtTotal" id="txtTotal" value="<?php echo $producto->descripcion ?>">
+                <input type="number" class="form-control" name="txtTotal" id="txtTotal" value="<?php echo $venta->total ?>">
               </div>
             </div>
 

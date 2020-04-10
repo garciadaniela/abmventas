@@ -6,8 +6,8 @@ include_once "entidades/tipoproducto.php";
 $producto = new Producto();
 $producto-> cargarFormulario($_REQUEST);
 
-$tipoproductos = new Tipoproducto();
-$aTipoProductos = $tipoproductos->obtenerTodos();
+$tipoproducto = new Tipoproducto();
+$aTipoProductos = $tipoproducto->obtenerTodos();
 
 if ($_POST) {
   if (isset($_POST["btnGuardar"])) {
@@ -296,7 +296,12 @@ if ($_POST) {
                 <select required class="form-control" name="lstTipoProducto" id="lstTipoProducto">
                   <option value="" disabled selected>Seleccionar</option>
                   <?php foreach($aTipoProductos as $tipo): ?>
+                    <?php if($tipo->idtipoproducto == $producto->fk_idtipoproducto): ?>
+                  <option selected value="<?php echo $tipo->idtipoproducto; ?>"> <?php echo $tipo->nombre;?></option>
+                  
+                    <?php else: ?>
                   <option value="<?php echo $tipo->idtipoproducto; ?>"> <?php echo $tipo->nombre;?></option>
+                    <?php endif; ?>
                   <?php endforeach; ?>
                 </select>
               </div>
