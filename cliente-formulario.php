@@ -313,7 +313,7 @@ if ($_POST) {
         </div>
         <!-- End of Main Content -->
         <?php if (isset($msg)) : ?>
-                        <div class="alert alert-info my-4" role="alert">
+                        <div class="alert alert-infogarcia my-4" role="alert">
                             <?php echo $msg; ?>
 
                         </div>
