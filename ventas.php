@@ -49,7 +49,7 @@ if ($_POST) {
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="css/0" rel="stylesheet">
+    <link href="css/sb-admin-20.css" rel="stylesheet">
 
 </head>
 
@@ -287,15 +287,7 @@ if ($_POST) {
                 </div>
                 <!-- End of Main Content -->
 
-                <!-- Footer -->
-                <footer class="sticky-footer bg-white">
-                    <div class="container my-auto">
-                        <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; Your Website 2019</span>
-                        </div>
-                    </div>
-                </footer>
-                <!-- End of Footer -->
+                <?php include_once("footer.php"); ?>
 
             </div>
             <!-- End of Content Wrapper -->
@@ -303,11 +295,7 @@ if ($_POST) {
         </div>
         <!-- End of Page Wrapper -->
 
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-        </a>
-
+    
        
 
         <!-- Bootstrap core JavaScript-->
