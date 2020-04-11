@@ -54,7 +54,7 @@ class Venta
         if (!$mysqli->query($sql)) {
             printf("Error en query: %s\n", $mysqli->error . " " . $sql);
         }
-        $mysqli->query($sql);
+        
         $this->idventa = $mysqli->insert_id;
         $mysqli->close();
     }
