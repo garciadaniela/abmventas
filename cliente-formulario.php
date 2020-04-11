@@ -19,6 +19,7 @@ if ($_POST) {
       $cliente->actualizar();
     } else {
       $cliente->insertar();
+      $msg = "Guardado correctamente";
     }
   } else if (isset($_POST["btnBorrar"])) {
     $cliente->eliminar();
@@ -307,9 +308,16 @@ if ($_POST) {
 
           </div>
           <!-- /.container-fluid -->
+         
 
         </div>
         <!-- End of Main Content -->
+        <?php if (isset($msg)) : ?>
+                        <div class="alert alert-info my-4" role="alert">
+                            <?php echo $msg; ?>
+
+                        </div>
+                    <?php endif; ?>
 
         <?php include_once("footer.php"); ?>
 
