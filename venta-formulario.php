@@ -286,7 +286,7 @@ if ($_POST) {
             <div class="row">
               <div class="col-6 form-group">
                 <label for="txtNombre">Cliente:</label>
-                <select required class="form-control" name="lstcliente" id="lstcliente">
+                <select required class="form-control" name="lstCliente" id="lstCliente">
                   <option value="" disabled selected>Seleccionar</option>
                   <?php foreach ($aClientes as $cliente) : ?>
                     <?php if($cliente->idcliente == $venta->fk_idcliente): ?>
@@ -300,7 +300,7 @@ if ($_POST) {
               </div>
               <div class="col-6 form-group">
                 <label for="txtNombre">Producto:</label>
-                <select required class="form-control" name="lstproducto" id="lstproducto">
+                <select required class="form-control" name="lstProducto" id="lstProducto">
                   <option value="" disabled selected>Seleccionar</option>
                   <?php foreach ($aProductos as $producto) : ?>
                     <?php if($producto->idproducto == $venta->fk_idproducto): ?>
@@ -318,11 +318,11 @@ if ($_POST) {
             <div class="row">
               <div class="col-4 form-group">
                 <label for="txtFecha">Fecha:</label>
-                <input type="date" required class="form-control" name="txtFecha" id="txtFecha" value="<?php echo date_format(date_create($venta->fecha), "d/m/Y H:m");  ?>">
+                <input type="date" required class="form-control" name="txtFecha" id="txtFecha" value="<?php echo date_format(date_create($venta->fecha), "d/m/Y");  ?>">
               </div>
               <div class="col-4 form-group">
                 <label for="txtHora">Hora:</label>
-                <input type="time" required class="form-control" name="txtHora" id="txtHora" value="<?php echo date_format(date_create($venta->fecha), "d/m/Y H:i");  ?>">
+                <input type="time" required class="form-control" name="txtHora" id="txtHora" value="<?php echo date_format(date_create($venta->fecha), "H:i");  ?>">
               </div>
             </div>
             <div class="row">

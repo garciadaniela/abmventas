@@ -33,7 +33,7 @@ class Venta
         $this->idventa = isset($request["id"]) ? $request["id"] : "";
         $this->fk_idcliente = isset($request["lstCliente"]) ? $request["lstCliente"] : "";
         $this->fk_idproducto = isset($request["lstProducto"]) ? $request["lstProducto"] : "";
-        $this->fecha = isset($request["txtFecha"]) ? $request["txtFecha"] . "" . $request["txtHora"] : "";
+        $this->fecha = isset($request["txtFecha"]) ? $request["txtFecha"] . " " . $request["txtHora"] : "";
         $this->cantidad = isset($request["txtCantidad"]) ? $request["txtCantidad"] : "";
         $this->preciounitario = isset($request["txtPrecioUnitario"]) ? $request["txtPrecioUnitario"] : "";
         $this->total = isset($request["txtTotal"]) ? $request["txtTotal"] : "";
@@ -46,7 +46,7 @@ class Venta
                 VALUES 
                (" . $this->fk_idcliente . ",
                 " . $this->fk_idproducto . ", 
-                " . $this->fecha . ", 
+                '" . $this->fecha . "', 
                 " . $this->cantidad . ",
                 " . $this->preciounitario . ",
                 " . $this->total . "
