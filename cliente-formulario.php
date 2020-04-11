@@ -19,7 +19,7 @@ if ($_POST) {
       $cliente->actualizar();
     } else {
       $cliente->insertar();
-      $msg = "Guardado correctamente";
+      $msg = "Cliente guardado correctamente";
     }
   } else if (isset($_POST["btnBorrar"])) {
     $cliente->eliminar();
@@ -304,20 +304,20 @@ if ($_POST) {
               </div>
             </div>
 
-           
+
 
           </div>
           <!-- /.container-fluid -->
-         
+
 
         </div>
         <!-- End of Main Content -->
         <?php if (isset($msg)) : ?>
-                        <div class="alert alert-infogarcia my-4" role="alert">
-                            <?php echo $msg; ?>
+          <div class="alert alert-info my-4" role="alert">
+            <?php echo $msg; ?>
 
-                        </div>
-                    <?php endif; ?>
+          </div>
+        <?php endif; ?>
 
         <?php include_once("footer.php"); ?>
 
@@ -327,8 +327,8 @@ if ($_POST) {
     </div>
     <!-- End of Page Wrapper -->
 
-  
-  
+
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>

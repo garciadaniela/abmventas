@@ -1,8 +1,8 @@
 <?php
 
-ini_set('display_errors','1');
-ini_set('display_startup_errors','1');
-ini_set('error_reporting', E_ALL); 
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+ini_set('error_reporting', E_ALL);
 
 include_once "config.php";
 include_once "entidades/venta.php";
@@ -27,6 +27,7 @@ if ($_POST) {
       $venta->actualizar();
     } else {
       $venta->insertar();
+      $msg = "La venta se guardó correctamente";
     }
   } else if (isset($_POST["btnBorrar"])) {
     $venta->eliminar();
@@ -294,11 +295,11 @@ if ($_POST) {
                 <select required class="form-control" name="lstCliente" id="lstCliente">
                   <option value="" disabled selected>Seleccionar</option>
                   <?php foreach ($aClientes as $cliente) : ?>
-                    <?php if($cliente->idcliente == $venta->fk_idcliente): ?>
-                  <option selected value="<?php echo $cliente->idcliente; ?>"> <?php echo $cliente->nombre;?></option>
-                  
-                    <?php else: ?>
-                  <option value="<?php echo $cliente->idcliente; ?>"> <?php echo $cliente->nombre;?></option>
+                    <?php if ($cliente->idcliente == $venta->fk_idcliente) : ?>
+                      <option selected value="<?php echo $cliente->idcliente; ?>"> <?php echo $cliente->nombre; ?></option>
+
+                    <?php else : ?>
+                      <option value="<?php echo $cliente->idcliente; ?>"> <?php echo $cliente->nombre; ?></option>
                     <?php endif; ?>
                   <?php endforeach; ?>
                 </select>
@@ -308,11 +309,11 @@ if ($_POST) {
                 <select required class="form-control" name="lstProducto" id="lstProducto">
                   <option value="" disabled selected>Seleccionar</option>
                   <?php foreach ($aProductos as $producto) : ?>
-                    <?php if($producto->idproducto == $venta->fk_idproducto): ?>
-                  <option selected value="<?php echo $producto->idproducto; ?>"> <?php echo $producto->nombre;?></option>
-                  
-                    <?php else: ?>
-                  <option value="<?php echo $producto->idproducto; ?>"> <?php echo $producto->nombre;?></option>
+                    <?php if ($producto->idproducto == $venta->fk_idproducto) : ?>
+                      <option selected value="<?php echo $producto->idproducto; ?>"> <?php echo $producto->nombre; ?></option>
+
+                    <?php else : ?>
+                      <option value="<?php echo $producto->idproducto; ?>"> <?php echo $producto->nombre; ?></option>
                     <?php endif; ?>
                   <?php endforeach; ?>
                 </select>
@@ -352,16 +353,23 @@ if ($_POST) {
 
         </div>
         <!-- End of Main Content -->
+        <?php if (isset($msg)) : ?>
+          <div class="alert alert-info my-4" role="alert">
+            <?php echo $msg; ?>
+
+          </div>
+        <?php endif; ?>
 
         <?php include_once("footer.php"); ?>
 
       </div>
       <!-- End of Content Wrapper -->
 
+
     </div>
     <!-- End of Page Wrapper -->
 
-  
+
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
