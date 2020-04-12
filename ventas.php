@@ -260,15 +260,18 @@ if ($_POST) {
                                 <th>Producto:</th>
                                 <th>Cantidad:</th>
                                 <th>Total:</th>
+                                <th class="text-center">Acciones:</th>
+
 
                             </tr>
 
                             <?php foreach ($aVentas as $venta) : ?>
                                 <tr>
-                                    <td><?php echo date_format(date_create($venta->fecha), "d/m/Y");  ?></a></td>
+                                    <td><?php echo date_format(date_create($venta->fecha), "d/m/Y");  ?></td>
                                     <td><?php echo $venta->fk_idproducto; ?></td>
                                     <td><?php echo $venta->cantidad; ?></td>
                                     <td><?php echo $venta->total; ?></td>
+                                    <td class="text-center"><a href="venta-formulario.php?id=<?php echo $venta->idventa; ?>"> <i class="fas fa-edit"></i></a></td>
                                  
 
 

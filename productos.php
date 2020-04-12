@@ -252,27 +252,32 @@ if ($_POST) {
                     <div class="container-fluid">
 
                         <!-- Page Heading -->
-                        <h1 class="h3 mb-4 text-gray-800 text-center">Listado de productos</h1>
-                        <table class="table table-hover border">
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Cantidad</th>
-                                <th>Precio</th>
+                        <div class="row">
+                            <div class="col-10">
+                                <h1 class="h3 mb-4 text-gray-800 text-center">Listado de productos</h1>
+                                <table class="table table-hover border">
+                                    <tr>
+                                        <th>Nombre:</th>
+                                        <th>Cantidad:</th>
+                                        <th>Precio:</th>
+                                        <th>Acciones:</th>
 
-                            </tr>
+                                    </tr>
 
-                            <?php foreach ($aProductos as $producto) : ?>
-                                <tr>
-                                    <td><a href="producto-formulario.php?id=<?php echo $producto->idproducto; ?>"><?php echo $producto->nombre; ?></a></td>
-                                    <td><?php echo $producto->cantidad; ?></td>
-                                    <td><?php echo $producto->precio; ?></td>
-
-
-                                </tr>
-                            <?php endforeach; ?>
-                        </table>
+                                    <?php foreach ($aProductos as $producto) : ?>
+                                        <tr>
+                                            <td><?php echo $producto->nombre; ?></td>
+                                            <td><?php echo $producto->cantidad; ?></td>
+                                            <td><?php echo $producto->precio; ?></td>
+                                            <td style="padding-left: 40px;"><a href="producto-formulario.php?id=<?php echo $producto->idproducto; ?>"> <i class="fas fa-edit"></i></a></td>
 
 
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </table>
+
+                            </div>
+                        </div>
 
 
 
@@ -291,9 +296,9 @@ if ($_POST) {
         </div>
         <!-- End of Page Wrapper -->
 
-       
 
-        
+
+
 
         <!-- Bootstrap core JavaScript-->
         <script src="vendor/jquery/jquery.min.js"></script>

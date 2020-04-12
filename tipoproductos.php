@@ -253,19 +253,21 @@ if ($_POST) {
 
                         <!-- Page Heading -->
                         <div class="row">
-                            <div class="col-8">
-                            <a href="tipoproducto-formulario.php" class="btn btn-primary mr-2">Nuevo</a>
+                            <div class="col-6">
                                 <h1 class="h3 mb-4 text-gray-800 text-center">Listado de tipos de productos</h1>
+                                <a href="tipoproducto-formulario.php" class="btn btn-primary my-3 mr-2">Nuevo</a>
                                 <table class="table table-hover border">
                                     <tr>
-                                        <th>Nombre</th>
+                                        <th>Nombre:</th>
+                                        <th>Acciones:</th>
 
 
                                     </tr>
 
                                     <?php foreach ($aTipoProductos as $tipo) : ?>
                                         <tr>
-                                            <td><a href="tipoproducto-formulario.php?id=<?php echo $tipo->idtipoproducto; ?>"><?php echo $tipo->nombre; ?></a></td>
+                                            <td><?php echo $tipo->nombre; ?></a></td>
+                                            <td style="padding-left: 40px;"><a href="tipoproducto-formulario.php?id=<?php echo $tipo->idtipoproducto; ?>"> <i class="fas fa-edit"></i></a></td>
 
 
 
