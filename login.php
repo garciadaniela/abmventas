@@ -1,17 +1,37 @@
 <?php
+
+include_once("config.php");
+include_once("entidades/usuario.php");
+
+/*$usuario = new Usuario(); 
+$usuario->usuario = "admin"; 
+$usuario->nombre = "Daniela"; 
+$usuario->apellido = "Garcia"; 
+$usuario->clave = $usuario->encriptarClave("admin123"); 
+$usuario->correo = "garciadanielajb@gmail.com"; 
+$usuario->insertar();
+
+*/
+
+
+
 //iniciamos la sesion
-session_start();
+//session_start();
 //en el dia ded ma;ana la clave vendra desde la 8800
-$claveEncriptada = password_hash("admin123", PASSWORD_DEFAULT); 
+//$claveEncriptada = password_hash("admin123", PASSWORD_DEFAULT); 
 
 
 if ($_POST) {
+    //comprobamos que el usuario sea admin y la clave sea admin123
   $usuario = trim($_POST["txtUsuario"]);
   $clave = trim($_POST["txtClave"]);
 
-  //comprobamos que el usuario sea admin y la clave sea admin123
-  if ($usuario == "admin" && $clave == "admin123") {
-    //si es correcto creamos una variable de session llamada nombre con el nombre de usuario
+  $entidadUsuario = new Usuario();
+  $entidadUsuario->obtenerPorUsuario($usuario);
+
+  //si es correcto creamos una variable de session llamada nombre con el nombre de usuario
+  if ($entidadUsuario->verificarClave($clave, $entidadUsuario->clave)) {
+    
     $_SESSION["nombre"] = "Daniela Garcia";
     //redireccionamos a la home 
     header('location: index.php');
