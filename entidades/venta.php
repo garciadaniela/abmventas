@@ -133,4 +133,27 @@ class Venta
         }
         return $aResultado;
     }
+
+
+    public function obtenerFacturacionMensual($mes){
+        $mysqli = new mysqli(Config::BBDD_HOST, Config::BBDD_USUARIO, Config::BBDD_CLAVE, Config::BBDD_NOMBRE);
+        $sql = "SELECT SUM(total) AS total FROM ventas WHERE MONTH(fecha) = $mes";
+        if (!$resultado = $mysqli->query($sql)) {
+        printf("Error en query: %s\n", $mysqli->error . " " . $sql);
+        }
+        $fila = $resultado->fetch_assoc();
+        return $fila["total"];
+    }
+
+
+    public function obtenerFacturacionAnual($anual){
+        $mysqli = new mysqli(Config::BBDD_HOST, Config::BBDD_USUARIO, Config::BBDD_CLAVE, Config::BBDD_NOMBRE);
+        $sql = "SELECT SUM(total) AS total FROM ventas WHERE YEAR(fecha) = $anual";
+        if (!$resultado = $mysqli->query($sql)) {
+        printf("Error en query: %s\n", $mysqli->error . " " . $sql);
+        }
+        $fila = $resultado->fetch_assoc();
+        return $fila["total"];
+    }
+    
 }
