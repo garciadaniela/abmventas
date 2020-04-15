@@ -267,7 +267,7 @@ if($_POST){
                     <div class="row no-gutters align-items-center">
                       <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"> Factuarción (Mensual)</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo "$" . $facturacionMes; ?></div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo "$" . number_format($facturacionMes, 2, ",", "."); ?></div>
                       </div>
                       <div class="col-auto">
                         <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -284,7 +284,7 @@ if($_POST){
                     <div class="row no-gutters align-items-center">
                       <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Facturación (Anual)</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo "$" . $facturacionAnual; ?></div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo "$" . number_format($facturacionAnual, 2, ",", "."); ?></div>
                       </div>
                       <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
