@@ -266,7 +266,7 @@ if($_POST){
                   <div class="card-body">
                     <div class="row no-gutters align-items-center">
                       <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Ganancias (Mensuales)</div>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"> Factuarción (Mensual)</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo "$" . $facturacionMes; ?></div>
                       </div>
                       <div class="col-auto">
@@ -283,7 +283,7 @@ if($_POST){
                   <div class="card-body">
                     <div class="row no-gutters align-items-center">
                       <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Ganancias (Anuales)</div>
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Facturación (Anual)</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo "$" . $facturacionAnual; ?></div>
                       </div>
                       <div class="col-auto">
