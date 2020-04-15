@@ -10,7 +10,7 @@ $aProductos = $producto->obtenerTodos();
 
 
 //iniciamos la session
-session_start();
+//session_start();
 if (!isset($_SESSION["nombre"])) {
     header('location: login.php');
 }

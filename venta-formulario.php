@@ -43,7 +43,7 @@ if (isset($_GET["id"]) && $_GET["id"] > 0) {
 
 
 //iniciamos la session
-session_start();
+//session_start();
 if (!isset($_SESSION["nombre"])) {
   header('location: login.php');
 }
@@ -324,7 +324,7 @@ if ($_POST) {
             <div class="row">
               <div class="col-4 form-group">
                 <label for="txtFecha">Fecha:</label>
-                <input type="date" required class="form-control" name="txtFecha" id="txtFecha" value="<?php echo date_format(date_create($venta->fecha), "d/m/Y");  ?>">
+                <input type="date" required class="form-control" name="txtFecha" id="txtFecha" value="<?php echo date_format(date_create($venta->fecha), "Y-m-d");  ?>">
               </div>
               <div class="col-4 form-group">
                 <label for="txtHora">Hora:</label>

@@ -10,7 +10,7 @@ $aVentas = $venta->obtenerTodos();
 
 
 //iniciamos la session
-session_start();
+ // session_start();
 if (!isset($_SESSION["nombre"])) {
     header('location: login.php');
 }
@@ -30,7 +30,7 @@ if ($_POST) {
 
 
 ?>
-
+ 
 <!DOCTYPE html>
 <html lang="es">
 
@@ -267,7 +267,7 @@ if ($_POST) {
 
                             <?php foreach ($aVentas as $venta) : ?>
                                 <tr>
-                                    <td><?php echo date_format(date_create($venta->fecha), "d/m/Y");  ?></td>
+                                    <td><?php echo date_format(date_create($venta->fecha), "Y-m-d");  ?></td>
                                     <td><?php echo $venta->fk_idproducto; ?></td>
                                     <td><?php echo $venta->cantidad; ?></td>
                                     <td><?php echo $venta->total; ?></td>
