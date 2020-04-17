@@ -54,7 +54,7 @@ class Venta
         if (!$mysqli->query($sql)) {
             printf("Error en query: %s\n", $mysqli->error . " " . $sql);
         }
-        
+
         $this->idventa = $mysqli->insert_id;
         $mysqli->close();
     }
@@ -135,25 +135,68 @@ class Venta
     }
 
 
-    public function obtenerFacturacionMensual($mes){
+    public function cargarGrilla()
+    {
+        $mysqli = new mysqli(Config::BBDD_HOST, Config::BBDD_USUARIO, Config::BBDD_CLAVE, Config::BBDD_NOMBRE);
+        $sql = "SELECT 
+               A.idventa,
+               A.fecha,
+               A.cantidad,
+               A.fk_idcliente,
+               B.nombre as nombre_cliente,
+               A.fk_idproducto,
+               A.total,
+               A.preciounitario,
+               C.nombre as nombre_producto
+               FROM ventas A
+               INNER JOIN clientes B ON A.fk_idcliente = B.idcliente
+               INNER JOIN productos C ON A.fk_idproducto = C.idproducto
+               ORDER BY A.fecha DESC";
+        if (!$resultado = $mysqli->query($sql)) {
+            printf("Error en query: %s\n", $mysqli->error . " " . $sql);
+        }
+
+        $aResultado = array();
+        if ($resultado) {
+            //Convierte el resultado en un array asociativo
+            while ($fila = $resultado->fetch_assoc()) {
+                $ventaAux = new Venta();
+                $ventaAux->idventa = $fila["idventa"];
+                $ventaAux->fk_idcliente = $fila["fk_idcliente"];
+                $ventaAux->fk_idproducto = $fila["fk_idproducto"];
+                $ventaAux->fecha = $fila["fecha"];
+                $ventaAux->cantidad = $fila["cantidad"];
+                $ventaAux->preciounitario = $fila["preciounitario"];
+                $ventaAux->nombre_cliente = $fila["nombre_cliente"];
+                $ventaAux->nombre_producto = $fila["nombre_producto"];
+                $ventaAux->total = $fila["total"];
+                $aResultado[] = $ventaAux;
+            }
+        }
+        return $aResultado;
+    }
+
+
+    public function obtenerFacturacionMensual($mes)
+    {
         $mysqli = new mysqli(Config::BBDD_HOST, Config::BBDD_USUARIO, Config::BBDD_CLAVE, Config::BBDD_NOMBRE);
         $sql = "SELECT SUM(total) AS total FROM ventas WHERE MONTH(fecha) = $mes";
         if (!$resultado = $mysqli->query($sql)) {
-        printf("Error en query: %s\n", $mysqli->error . " " . $sql);
+            printf("Error en query: %s\n", $mysqli->error . " " . $sql);
         }
         $fila = $resultado->fetch_assoc();
         return $fila["total"];
     }
 
 
-    public function obtenerFacturacionAnual($anual){
+    public function obtenerFacturacionAnual($anual)
+    {
         $mysqli = new mysqli(Config::BBDD_HOST, Config::BBDD_USUARIO, Config::BBDD_CLAVE, Config::BBDD_NOMBRE);
         $sql = "SELECT SUM(total) AS total FROM ventas WHERE YEAR(fecha) = $anual";
         if (!$resultado = $mysqli->query($sql)) {
-        printf("Error en query: %s\n", $mysqli->error . " " . $sql);
+            printf("Error en query: %s\n", $mysqli->error . " " . $sql);
         }
         $fila = $resultado->fetch_assoc();
         return $fila["total"];
     }
-    
 }

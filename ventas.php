@@ -6,6 +6,8 @@ include_once "entidades/venta.php";
 
 $venta = new Venta();
 $aVentas = $venta->obtenerTodos();
+$aVentas = $venta->cargarGrilla();
+
 
 
 
@@ -257,6 +259,7 @@ if ($_POST) {
                             <tr>
                               
                                 <th>Fecha:</th>
+                                <th>Cliente:</th>
                                 <th>Producto:</th>
                                 <th>Cantidad:</th>
                                 <th>Total:</th>
@@ -268,8 +271,9 @@ if ($_POST) {
                             <?php foreach ($aVentas as $venta) : ?>
                                 <tr>
                                     <td><?php echo date_format(date_create($venta->fecha), "Y-m-d");  ?></td>
-                                    <td><?php echo $venta->fk_idproducto; ?></td>
-                                    <td><?php echo $venta->cantidad; ?></td>
+                                    <td><?php echo $venta->nombre_cliente; ?></td>
+                                    <td><?php echo $venta->nombre_producto; ?></td>
+                                    <td style="padding-left: 43px;"><?php echo $venta->cantidad; ?></td>
                                     <td><?php echo $venta->total; ?></td>
                                     <td class="text-center"><a href="venta-formulario.php?id=<?php echo $venta->idventa; ?>"> <i class="fas fa-edit"></i></a></td>
                                  
