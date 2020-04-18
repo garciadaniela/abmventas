@@ -21,6 +21,7 @@ if ($_POST) {
     } else {
       $producto->insertar();
       $msg = "El producto se guadó correctamente";
+      $_POST["txtDescripcion"];
     }
   } else if (isset($_POST["btnBorrar"])) {
     $producto->eliminar();
@@ -69,7 +70,7 @@ if ($_POST) {
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
+  <script src="https://cdn.ckeditor.com/ckeditor5/18.0.0/classic/ckeditor.js"></script>
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-20.css" rel="stylesheet">
 
@@ -316,7 +317,7 @@ if ($_POST) {
             <div class="row">
               <div class="col-8 form-group">
                 <label for="txtDescripcion">Descripción</label>
-                <input type="text" class="form-control" name="txtDescripcion" id="txtDescripcion" value="<?php echo $producto->descripcion ?>">
+                <textarea type="text" class="form-control" name="txtDescripcion" id="txtDescripcion" value="<?php echo $producto->descripcion ?>"></textarea>
               </div>
             </div>
 
@@ -339,8 +340,14 @@ if ($_POST) {
     </div>
     <!-- End of Page Wrapper -->
 
-
-
+<!-- Editor de texto js -->
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#txtDescripcion' ) )
+            .catch( error => {
+            console.error( error );
+            } );
+        </script>
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
