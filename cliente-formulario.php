@@ -303,7 +303,16 @@ if ($_POST) {
                 <input type="text" class="form-control" name="txtCorreo" id="txtCorreo" required value="<?php echo $cliente->correo ?>">
               </div>
             </div>
+            <div class="row">
+              <div class="col-12 text-center">
+                <?php if (isset($msg)) : ?>
+                  <div class="alert alert-info my-4 color" style="text-transform: uppercase; padding: 20px; margin: 223px; font-weight: bold;" role="alert">
+                    <?php echo $msg; ?>
 
+                  </div>
+                <?php endif; ?>
+              </div>
+            </div>
 
 
           </div>
@@ -312,12 +321,6 @@ if ($_POST) {
 
         </div>
         <!-- End of Main Content -->
-        <?php if (isset($msg)) : ?>
-          <div class="alert alert-info my-4" role="alert">
-            <?php echo $msg; ?>
-
-          </div>
-        <?php endif; ?>
 
         <?php include_once("footer.php"); ?>
 

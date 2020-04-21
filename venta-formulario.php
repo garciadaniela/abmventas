@@ -347,18 +347,23 @@ if ($_POST) {
                 <input type="number" class="form-control" name="txtTotal" id="txtTotal" value="<?php echo $venta->total ?>">
               </div>
             </div>
+            <div class="row">
+              <div class="col-12 text-center">
+                <?php if (isset($msg)) : ?>
+                  <div class="alert alert-info my-4 color" style="text-transform: uppercase; padding: 20px; margin: 223px; font-weight: bold;" role="alert">
+                    <?php echo $msg; ?>
+
+                  </div>
+                <?php endif; ?>
+              </div>
+            </div>
 
           </div>
           <!-- /.container-fluid -->
 
         </div>
         <!-- End of Main Content -->
-        <?php if (isset($msg)) : ?>
-          <div class="alert alert-info my-4" role="alert">
-            <?php echo $msg; ?>
 
-          </div>
-        <?php endif; ?>
 
         <?php include_once("footer.php"); ?>
 
