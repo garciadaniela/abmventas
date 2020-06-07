@@ -101,6 +101,28 @@ class Producto{
         return $aResultado;
     }
 
+    public function obtenerUnoPorId($id){
+        $obj = new mysqli(Config::BBDD_HOST, Config::BBDD_USUARIO, Config::BBDD_CLAVE, Config::BBDD_NOMBRE);
+        $consulta = "SELECT 
+            idproducto,
+            nombre,
+            cantidad,
+            precio,
+            descripcion 
+            FROM productos WHERE idproducto = $id";
+            //print_r($consulta);exit;
+        $resultado = $obj->query($consulta);
+
+        $fila = $resultado->fetch_assoc();
+
+        $this->idproducto = $fila["idproducto"];
+        $this->nombre = $fila["nombre"];
+        $this->cantidad = $fila["cantidad"];
+        $this->precio = $fila["precio"];
+        $this->descripcion = $fila["descripcion"];
+        
+        return true;
+    }
     
 
 }

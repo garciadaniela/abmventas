@@ -4,14 +4,15 @@ include_once("config.php");
 include_once("entidades/usuario.php");
 
 /*$usuario = new Usuario(); 
-$usuario->usuario = "admin"; 
+$usuario->usuario = "dgarcia"; 
 $usuario->nombre = "Daniela"; 
 $usuario->apellido = "Garcia"; 
 $usuario->clave = $usuario->encriptarClave("admin123"); 
 $usuario->correo = "garciadanielajb@gmail.com"; 
 $usuario->insertar();
-
 */
+
+
 
 
 
@@ -93,10 +94,10 @@ if ($_POST) {
 <?php endif; ?>
                   <form class="user" action="" method="POST">
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="txtUsuario" name="txtUsuario" aria-describedby="emailHelp" placeholder="Usuario">
+                      <input type="text" class="form-control form-control-user" id="txtUsuario" name="txtUsuario" aria-describedby="emailHelp" placeholder="Usuario" value="dgarcia">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="txtClave" name="txtClave" placeholder="Clave">
+                      <input type="password" class="form-control form-control-user" id="txtClave" name="txtClave" placeholder="Clave" value="admin123">
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">

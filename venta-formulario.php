@@ -36,6 +36,14 @@ if ($_POST) {
 if (isset($_GET["id"]) && $_GET["id"] > 0) {
   $venta->obtenerPorId();
 }
+if(isset($_GET["do"]) && $_GET["do"] == "buscarProducto"){
+  $idProducto = $_GET["id"];
+  $producto = new Producto();
+  $producto->obtenerUnoPorId($idProducto);
+  echo json_encode($producto->precio);
+  exit;
+}
+
 
 
 
@@ -306,7 +314,7 @@ if ($_POST) {
               </div>
               <div class="col-6 form-group">
                 <label for="txtNombre">Producto:</label>
-                <select required class="form-control" name="lstProducto" id="lstProducto">
+                <select onchange="fBuscarPrecioUnitario();" required class="form-control" name="lstProducto" id="lstProducto">
                   <option value="" disabled selected>Seleccionar</option>
                   <?php foreach ($aProductos as $producto) : ?>
                     <?php if ($producto->idproducto == $venta->fk_idproducto) : ?>
@@ -334,11 +342,11 @@ if ($_POST) {
             <div class="row">
               <div class="col-6 form-group">
                 <label for="txtCantidad">Cantidad:</label>
-                <input type="number" required class="form-control" name="txtCantidad" id="txtCantidad" value="<?php echo $venta->cantidad ?>">
+                <input type="number" onchange="fCalcularTotal();" required class="form-control" name="txtCantidad" id="txtCantidad" value="<?php echo $venta->cantidad ?>">
               </div>
               <div class="col-6 form-group">
                 <label for="txtPrecioUnitario">Precio Unitario:</label>
-                <input type="number" required class="form-control" name="txtPrecioUnitario" id="txtPrecioUnitario" value="<?php echo $venta->preciounitario ?>">
+                <input type="text" required class="form-control" name="txtPrecioUnitario" id="txtPrecioUnitario" value="<?php echo $venta->preciounitario ?>">
               </div>
             </div>
             <div class="row">
@@ -374,7 +382,6 @@ if ($_POST) {
     </div>
     <!-- End of Page Wrapper -->
 
-
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -386,6 +393,32 @@ if ($_POST) {
     <script src="js/sb-admin-2.min.js"></script>
 
   </form>
+  <script>
+  function fBuscarPrecioUnitario(){
+            idProducto = $("#lstProducto").val();
+            $.ajax({
+	            type: "GET",
+	            url: "venta-formulario.php?do=buscarProducto",
+	            data: { id:idProducto },
+	            async: true,
+	            dataType: "json",
+	            success: function (respuesta) {
+                    $("#txtPrecioUnitario").val(respuesta);
+                  
+	            }
+	        });
+        }
+
+        function fCalcularTotal(){
+    var precio = $('#txtPrecioUnitario').val();
+    var cantidad = $('#txtCantidad').val();
+    var resultado = precio * cantidad;
+    $("#txtTotal").val(resultado);
+    
+  }
+
+
+  </script>
 </body>
 
 </html>

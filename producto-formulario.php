@@ -363,7 +363,35 @@ if ($_POST) {
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-
+<script>
+function fBuscarLocalidad(){
+            idProvincia = $("#lstProvincia option:selected").val();
+            $.ajax({
+	            type: "GET",
+	            url: "cliente-formulario.php?do=buscarLocalidad",
+	            data: { id:idProvincia },
+	            async: true,
+	            dataType: "json",
+	            success: function (respuesta) {
+                    $("#lstLocalidad option").remove();
+                    $("<option>", {
+                        value: 0,
+                        text: "Seleccionar",
+                        disabled: true,
+                        selected: true
+                    }).appendTo("#lstLocalidad");
+                
+                    for (i = 0; i < respuesta.length; i++) {
+                        $("<option>", {
+                            value: respuesta[i]["idlocalidad"],
+                            text: respuesta[i]["nombre"]
+                            }).appendTo("#lstLocalidad");
+                        }
+                    $("#lstLocalidad").prop("selectedIndex", "0");
+	            }
+	        });
+        }
+</script>
   </form>
 </body>
 

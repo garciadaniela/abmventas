@@ -7,6 +7,7 @@ class Cliente {
     private $telefono;
     private $correo;
     private $fecha_nac;
+    
 
     public function __construct(){
 
@@ -103,6 +104,5 @@ class Cliente {
     }
 
 }
-
 
 ?>

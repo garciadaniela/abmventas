@@ -199,4 +199,28 @@ class Venta
         $fila = $resultado->fetch_assoc();
         return $fila["total"];
     }
+
+    public function obtenerUnoPorId($idventa){
+        $aVentas = array();
+        $obj = new mysqli(Constante::BBDD_HOST, Constante::BBDD_USUARIO, Constante::BBDD_CLAVE, Constante::BBDD_NOMBRE);
+        $sql = "SELECT 
+                    A.idventa, 
+                    A.fecha, 
+                    A.preciounitario, 
+                    A.fk_idcliente, 
+                    A.fk_idproducto
+                FROM ventas A
+                WHERE A.idventa = $idventa
+                ";
+        $resultado = $obj->query($sql);
+        $fila = $resultado->fetch_assoc();
+
+        $this->idventa = $fila["idventa"];
+        $this->fecha = $fila["fecha"];
+        $this->preciounitario = $fila["preciounitario"];
+        $this->fk_idcliente = $fila["fk_idcliente"];
+        $this->fk_idproducto = $fila["fk_idproducto"];
+        return ($this);
+    }
+
 }
